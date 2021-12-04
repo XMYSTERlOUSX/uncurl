@@ -93,23 +93,9 @@ def parse(curl_command, **kargs):
     #auth_data = f'{BASE_INDENT}auth={parsed_context.auth}'
     auth_data = "{}auth={}".format(BASE_INDENT,parsed_context.auth)
 
-    formatter = {
-        'method': parsed_context.method,
-        'url': parsed_context.url,
-        'data_token': data_token,
-        'headers_token': "{}headers={}".format(BASE_INDENT, dict_to_pretty_string(parsed_context.headers)),
-        'cookies_token': "{}cookies={}".format(BASE_INDENT, dict_to_pretty_string(parsed_context.cookies)),
-        'security_token': verify_token,
-        'requests_kargs': requests_kargs,
-        'auth': auth_data
-    }
+    return_header = dict_to_pretty_string(parsed_context.headers)
 
-    return """requests.{method}("{url}",
-{requests_kargs}{data_token}{headers_token},
-{cookies_token},
-{auth},{security_token}
-)""".format(**formatter)
-
+    return return_header
 
 def dict_to_pretty_string(the_dict, indent=4):
     if not the_dict:
@@ -117,4 +103,3 @@ def dict_to_pretty_string(the_dict, indent=4):
 
     return ("\n" + " " * indent).join(
         json.dumps(the_dict, sort_keys=True, indent=indent, separators=(',', ': ')).splitlines())
-
