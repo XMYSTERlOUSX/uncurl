@@ -7,7 +7,7 @@ setup(
     description='A library to convert curl requests to python-requests.',
     author='Steve Pulec',
     author_email='spulec@gmail.com',
-    url='https://github.com/spulec/uncurl',
+    url='https://github.com/XMYSTERlOUSX/uncurl',
     entry_points={
         'console_scripts': [
             'uncurl = uncurl.bin:main',
