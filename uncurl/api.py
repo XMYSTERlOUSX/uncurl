@@ -52,12 +52,12 @@ def parse_context(curl_command):
         else:
             header_key, header_value = curl_header.split(":", 1)
 
-        if header_key.lower().strip("$") == 'cookie':
-            cookie = Cookie.SimpleCookie(bytes(header_value, "ascii").decode("unicode-escape"))
-            for key in cookie:
-                cookie_dict[key] = cookie[key].value
-        else:
-            quoted_headers[header_key] = header_value.strip()
+        #if header_key.lower().strip("$") == 'cookie':
+            #cookie = Cookie.SimpleCookie(bytes(header_value, "ascii").decode("unicode-escape"))
+            #for key in cookie:
+                #cookie_dict[key] = cookie[key].value
+        #else:
+        quoted_headers[header_key] = header_value.strip()
 
     # add auth
     user = parsed_args.user
