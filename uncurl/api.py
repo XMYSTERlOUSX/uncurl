@@ -7,7 +7,10 @@ from collections import OrderedDict, namedtuple
 
 from six.moves import http_cookies as Cookie
 
-parser = argparse.ArgumentParser()
+def argparse_error_handler(errmsg):
+   raise Exception(errmsg)
+
+parser = argparse.ArgumentParser(exit_on_error=False)
 parser.add_argument('command')
 parser.add_argument('url')
 parser.add_argument('-d', '--data')
@@ -19,11 +22,11 @@ parser.add_argument('-k','--insecure', action='store_true')
 parser.add_argument('--user', '-u', default=())
 parser.add_argument('-i','--include', action='store_true')
 parser.add_argument('-s','--silent', action='store_true')
+parser.error = argparse_error_handler
 
 BASE_INDENT = " " * 4
 
 ParsedContext = namedtuple('ParsedContext', ['method', 'url', 'data', 'headers', 'cookies', 'verify', 'auth'])
-
 
 def normalize_newlines(multiline_text):
     return multiline_text.replace(" \\\n", " ")
