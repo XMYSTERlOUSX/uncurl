@@ -10,7 +10,7 @@ from six.moves import http_cookies as Cookie
 def argparse_error_handler(errmsg):
    raise Exception(errmsg)
 
-parser = argparse.ArgumentParser(exit_on_error=False)
+parser = argparse.ArgumentParser()
 parser.add_argument('command')
 parser.add_argument('url')
 parser.add_argument('-d', '--data')
